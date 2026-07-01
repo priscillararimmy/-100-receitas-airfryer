@@ -53,11 +53,20 @@
 
     /* TOPO / HERO */
     .hero {
-      background: #fff;
+      background: url('public/images/100 Receitas Banner.jpg') center center / cover no-repeat;
       padding: 50px 20px 40px;
       text-align: center;
       border-bottom: 3px solid var(--laranja);
+      position: relative;
     }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.52);
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero .container { position: relative; z-index: 1; }
     .hero .tag {
       display: inline-block;
       background: var(--amarelo);
@@ -74,13 +83,13 @@
       font-size: 2.4rem;
       font-weight: 900;
       line-height: 1.15;
-      color: var(--escuro);
+      color: #fff;
       margin-bottom: 16px;
     }
-    .hero h1 span { color: var(--laranja); }
+    .hero h1 span { color: var(--amarelo); }
     .hero .subtitulo {
       font-size: 1.1rem;
-      color: #555;
+      color: #ddd;
       max-width: 580px;
       margin: 0 auto 30px;
     }
@@ -168,6 +177,8 @@
     .receitas-destaque h2 { font-size: 1.9rem; font-weight: 900; margin-bottom: 8px; }
     .receitas-destaque h2 span { color: var(--laranja); }
     .receitas-destaque .sub { color: #888; margin-bottom: 40px; }
+
+    .carousel-wrapper { position: relative; }
     .receitas-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -196,6 +207,65 @@
     .receita-info { padding: 14px; }
     .receita-info strong { font-size: 0.9rem; display: block; margin-bottom: 4px; }
     .receita-info span { font-size: 0.78rem; color: var(--cinza-medio); }
+
+    .carousel-btn {
+      display: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #fff;
+      border: 2px solid var(--laranja);
+      color: var(--laranja);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      z-index: 2;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transition: background 0.2s, color 0.2s;
+    }
+    .carousel-btn:hover { background: var(--laranja); color: #fff; }
+    .carousel-btn.prev { left: -4px; }
+    .carousel-btn.next { right: -4px; }
+
+    .carousel-dots {
+      display: none;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .carousel-dots span {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #ddd;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .carousel-dots span.ativo { background: var(--laranja); }
+
+    @media (max-width: 600px) {
+      .carousel-btn { display: flex; }
+      .carousel-dots { display: flex; }
+      .receitas-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 14px;
+        padding: 4px 4px 12px;
+        margin: 0 0 8px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      .receitas-grid::-webkit-scrollbar { display: none; }
+      .receita-card {
+        min-width: 78vw;
+        scroll-snap-align: center;
+        flex-shrink: 0;
+      }
+    }
 
     /* BENEFÍCIOS */
     .beneficios {
@@ -464,18 +534,77 @@
   <section class="hero">
     <div class="tag">⭐ Mais de 100 receitas testadas</div>
     <div class="container">
-      <h1>Chega de fazer só <span>frango e batata</span> na sua airfryer</h1>
-      <p class="subtitulo">Descubra tudo que dá pra preparar nela — de entradas até sobremesas — com temperatura e tempo certinho em cada receita.</p>
-      <div class="hero-mockup">
-        <img src="public/images/capa.png" alt="100 Receitas na Airfryer — De Entradas até Sobremesas"/>
-      </div>
+      <h1>Chega de fazer só <span>frango e batata frita</span> na sua airfryer</h1>
+      <p class="subtitulo">Descubra tudo que dá pra preparar nela, de entradas até sobremesas com temperatura e tempo certinho em cada receita.</p>
       <div class="seta-animada">👇</div>
       <a href="#oferta" class="btn-cta">
-        QUERO MINHAS 100 RECEITAS AGORA
-        <small>Acesso imediato após o pagamento</small>
+        QUERO AS RECEITAS!
       </a>
     </div>
   </section>
+<!-- RECEITAS DESTAQUE -->
+  <section class="receitas-destaque">
+    <div class="container">
+      <h2>Algumas receitas que você vai <span>encontrar</span></h2>
+      <p class="sub">E ainda tem mais 90 te esperando dentro do livro</p>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn prev" onclick="moverCarrossel(-1)" aria-label="Anterior">&#8592;</button>
+        <div class="receitas-grid" id="carrosselReceitas">
+          <div class="receita-card"><div class="receita-img"><img src="public/images/receita-picanha.jpg" alt="Picanha na Airfryer"/></div><div class="receita-info"><strong>Picanha na Airfryer</strong><span>Macia e dourada em poucos minutos</span></div></div>
+          <div class="receita-card"><div class="receita-img"><img src="public/images/receita-pizza.jpg" alt="Pizza com Borda de Catupiry"/></div><div class="receita-info"><strong>Pizza com Borda de Catupiry</strong><span>Melhor que a da pizzaria</span></div></div>
+          <div class="receita-card"><div class="receita-img"><img src="public/images/receita-brownie.jpg" alt="Brownie na Airfryer"/></div><div class="receita-info"><strong>Brownie na Airfryer</strong><span>Molhadinho e pronto em 15 min</span></div></div>
+          <div class="receita-card"><div class="receita-img"><img src="public/images/bolo-cenoura.jpg" alt="Bolo Cenoura"/></div><div class="receita-info"><strong>Bolo Cenoura</strong><span>Clássico que nunca sai de moda!</span></div></div>
+          <div class="receita-card"><div class="receita-img"><img src="public/images/receita-camarao.jpg" alt="Camarão Empanado"/></div><div class="receita-info"><strong>Camarão Empanado</strong><span>Entrada perfeita para qualquer ocasião</span></div></div>
+          <div class="receita-card"><div class="receita-img"><img src="public/images/receita-costelinha.jpg" alt="Costelinha Barbecue"/></div><div class="receita-info"><strong>Costelinha Barbecue</strong><span>Cai do osso, cheia de sabor</span></div></div>
+        </div>
+        <button class="carousel-btn next" onclick="moverCarrossel(1)" aria-label="Próximo">&#8594;</button>
+      </div>
+      <div class="carousel-dots" id="carrosselDots"></div>
+    </div>
+  </section>
+  <script>
+    (function() {
+      var trilha = document.getElementById('carrosselReceitas');
+      var dotsEl = document.getElementById('carrosselDots');
+      var cards = trilha ? trilha.querySelectorAll('.receita-card') : [];
+      var atual = 0;
+
+      function criarDots() {
+        dotsEl.innerHTML = '';
+        cards.forEach(function(_, i) {
+          var d = document.createElement('span');
+          if (i === 0) d.classList.add('ativo');
+          d.addEventListener('click', function() { irPara(i); });
+          dotsEl.appendChild(d);
+        });
+      }
+
+      function atualizarDots() {
+        var dots = dotsEl.querySelectorAll('span');
+        dots.forEach(function(d, i) { d.classList.toggle('ativo', i === atual); });
+      }
+
+      function irPara(idx) {
+        if (!trilha || cards.length === 0) return;
+        atual = Math.max(0, Math.min(idx, cards.length - 1));
+        var card = cards[atual];
+        trilha.scrollTo({ left: card.offsetLeft - trilha.offsetLeft, behavior: 'smooth' });
+        atualizarDots();
+      }
+
+      window.moverCarrossel = function(dir) { irPara(atual + dir); };
+
+      trilha && trilha.addEventListener('scroll', function() {
+        var meio = trilha.scrollLeft + trilha.clientWidth / 2;
+        cards.forEach(function(c, i) {
+          if (c.offsetLeft <= meio && c.offsetLeft + c.offsetWidth > meio) atual = i;
+        });
+        atualizarDots();
+      });
+
+      criarDots();
+    })();
+  </script>
 
   <!-- DIVISOR -->
   <div class="divisor">
@@ -517,21 +646,6 @@
     </div>
   </section>
 
-  <!-- RECEITAS DESTAQUE -->
-  <section class="receitas-destaque">
-    <div class="container">
-      <h2>Algumas receitas que você vai <span>encontrar</span></h2>
-      <p class="sub">E ainda tem mais 90 te esperando dentro do livro</p>
-      <div class="receitas-grid">
-        <div class="receita-card"><div class="receita-img"><img src="public/images/receita-frango.jpg" alt="Frango Empanado"/></div><div class="receita-info"><strong>Frango Empanado Perfeito</strong><span>Crocante por fora, suculento por dentro</span></div></div>
-        <div class="receita-card"><div class="receita-img"><img src="public/images/receita-picanha.jpg" alt="Picanha na Airfryer"/></div><div class="receita-info"><strong>Picanha na Airfryer</strong><span>Macia e dourada em poucos minutos</span></div></div>
-        <div class="receita-card"><div class="receita-img"><img src="public/images/receita-pizza.jpg" alt="Pizza com Borda de Catupiry"/></div><div class="receita-info"><strong>Pizza com Borda de Catupiry</strong><span>Melhor que a da pizzaria</span></div></div>
-        <div class="receita-card"><div class="receita-img"><img src="public/images/receita-brownie.jpg" alt="Brownie na Airfryer"/></div><div class="receita-info"><strong>Brownie na Airfryer</strong><span>Molhadinho e pronto em 15 min</span></div></div>
-        <div class="receita-card"><div class="receita-img"><img src="public/images/receita-camarao.jpg" alt="Camarão Empanado"/></div><div class="receita-info"><strong>Camarão Empanado</strong><span>Entrada perfeita para qualquer ocasião</span></div></div>
-        <div class="receita-card"><div class="receita-img"><img src="public/images/receita-costelinha.jpg" alt="Costelinha Barbecue"/></div><div class="receita-info"><strong>Costelinha Barbecue</strong><span>Cai do osso, cheia de sabor</span></div></div>
-      </div>
-    </div>
-  </section>
 
   <!-- BENEFÍCIOS -->
   <section class="beneficios">
@@ -548,7 +662,9 @@
     </div>
   </section>
 
+
   <!-- BÔNUS -->
+  <!--
   <section class="bonus">
     <div class="container">
       <span class="badge">🎁 Bônus exclusivos</span>
@@ -580,6 +696,7 @@
       <p class="bonus-gratis-label">Tudo isso incluso GRÁTIS no seu pedido ✅</p>
     </div>
   </section>
+  -->
 
   <!-- OFERTA -->
   <section class="oferta" id="oferta">
@@ -596,10 +713,8 @@
         <p class="de">De R$97,00</p>
         <p class="por">Por apenas</p>
         <p class="preco"><sup>R$</sup>37</p>
-        <p class="parcelado">ou 3x de R$13,24 sem juros</p>
-        <a href="https://seulink.hotmart.com" class="btn-cta">
-          QUERO MINHAS 100 RECEITAS POR R$37
-          <small>🔒 Pagamento 100% seguro • Acesso imediato</small>
+        <a href="https://pay.hotmart.com/W106559158D?off=pcmkmbef" class="btn-cta">
+          COMPRAR AGORA!
         </a>
         <div class="selos">
           <span class="selo">🔒 Pagamento Seguro</span>
