@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>100 Receitas na Airfryer — De Entradas até Sobremesas</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --laranja: #FF6B35;
+      --laranja-escuro: #e85a22;
+      --amarelo: #FFB800;
+      --escuro: #1C1C1C;
+      --cinza: #F5F5F5;
+      --cinza-medio: #888;
+      --verde: #27AE60;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--escuro);
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    /* UTILITÁRIOS */
+    .container { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+    .texto-centro { text-align: center; }
+
+    .btn-cta {
+      display: block;
+      background: var(--laranja);
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 20px 40px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      box-shadow: 0 8px 24px rgba(255,107,53,0.4);
+    }
+    .btn-cta:hover { background: var(--laranja-escuro); transform: scale(1.03); box-shadow: 0 12px 32px rgba(255,107,53,0.5); }
+    .btn-cta small { display: block; font-size: 0.75rem; font-weight: 400; opacity: 0.85; margin-top: 4px; text-transform: none; letter-spacing: 0; }
+
+    /* TOPO / HERO */
+    .hero {
+      background: #fff;
+      padding: 50px 20px 40px;
+      text-align: center;
+      border-bottom: 3px solid var(--laranja);
+    }
+    .hero .tag {
+      display: inline-block;
+      background: var(--amarelo);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--escuro);
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--laranja); }
+    .hero .subtitulo {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 580px;
+      margin: 0 auto 30px;
+    }
+    .hero-mockup {
+      width: 100%;
+      max-width: 360px;
+      margin: 30px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(255,107,53,0.35);
+    }
+    .hero-mockup img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 20px;
+    }
+    .seta-animada { font-size: 1.8rem; margin: 20px 0; animation: bounce 1s infinite; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+
+    /* DIVISOR */
+    .divisor {
+      background: var(--cinza);
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .divisor p { font-size: 1rem; color: #555; max-width: 600px; margin: 0 auto; }
+    .divisor strong { color: var(--laranja); }
+
+    /* PROBLEMA */
+    .problema {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .problema h2 { font-size: 1.9rem; font-weight: 900; margin-bottom: 30px; }
+    .problema h2 span { color: var(--laranja); }
+    .dores { list-style: none; max-width: 560px; margin: 0 auto 30px; text-align: left; }
+    .dores li {
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      background: #FFF5F2;
+      border-left: 4px solid var(--laranja);
+      border-radius: 0 8px 8px 0;
+      font-size: 1rem;
+      color: #444;
+    }
+    .dores li::before { content: "😔 "; }
+
+    /* SOLUÇÃO */
+    .solucao {
+      background: var(--escuro);
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .solucao h2 { font-size: 1.9rem; font-weight: 900; margin-bottom: 10px; }
+    .solucao h2 span { color: var(--laranja); }
+    .solucao p { color: #ccc; font-size: 1rem; margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto; }
+
+    /* CATEGORIAS */
+    .categorias-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      max-width: 780px;
+      margin: 0 auto 40px;
+    }
+    .cat-card {
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      border-radius: 12px;
+      padding: 20px 14px;
+      text-align: center;
+    }
+    .cat-card .emoji { font-size: 2rem; margin-bottom: 8px; }
+    .cat-card strong { display: block; font-size: 0.9rem; color: #fff; margin-bottom: 4px; }
+    .cat-card span { font-size: 0.8rem; color: var(--laranja); font-weight: 700; }
+
+    /* RECEITAS DESTAQUE */
+    .receitas-destaque {
+      padding: 60px 20px;
+      background: #fff;
+      text-align: center;
+    }
+    .receitas-destaque h2 { font-size: 1.9rem; font-weight: 900; margin-bottom: 8px; }
+    .receitas-destaque h2 span { color: var(--laranja); }
+    .receitas-destaque .sub { color: #888; margin-bottom: 40px; }
+    .receitas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      max-width: 780px;
+      margin: 0 auto 40px;
+    }
+    .receita-card {
+      border: 2px solid #eee;
+      border-radius: 14px;
+      overflow: hidden;
+      text-align: left;
+      transition: box-shadow 0.2s;
+    }
+    .receita-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .receita-img {
+      height: 140px;
+      overflow: hidden;
+    }
+    .receita-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .receita-info { padding: 14px; }
+    .receita-info strong { font-size: 0.9rem; display: block; margin-bottom: 4px; }
+    .receita-info span { font-size: 0.78rem; color: var(--cinza-medio); }
+
+    /* BENEFÍCIOS */
+    .beneficios {
+      background: var(--cinza);
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .beneficios h2 { font-size: 1.9rem; font-weight: 900; margin-bottom: 40px; }
+    .beneficios h2 span { color: var(--laranja); }
+    .ben-lista { max-width: 600px; margin: 0 auto 40px; text-align: left; }
+    .ben-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 20px;
+      background: #fff;
+      padding: 18px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .ben-icone {
+      background: var(--laranja);
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    .ben-texto strong { display: block; font-size: 0.95rem; margin-bottom: 2px; }
+    .ben-texto span { font-size: 0.85rem; color: #666; }
+
+    /* BÔNUS */
+    .bonus {
+      padding: 60px 20px;
+      text-align: center;
+      background: #fff;
+    }
+    .bonus .badge {
+      display: inline-block;
+      background: var(--verde);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+    .bonus h2 { font-size: 1.9rem; font-weight: 900; margin-bottom: 8px; }
+    .bonus .sub { color: #888; margin-bottom: 40px; }
+    .bonus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+      max-width: 780px;
+      margin: 0 auto 30px;
+    }
+    .bonus-card {
+      border: 2px dashed var(--laranja);
+      border-radius: 16px;
+      padding: 28px 20px;
+      text-align: center;
+      position: relative;
+    }
+    .bonus-num {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--laranja);
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bonus-card .emoji { font-size: 2.5rem; margin-bottom: 12px; display: block; }
+    .bonus-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .bonus-card p { font-size: 0.85rem; color: #666; margin-bottom: 14px; }
+    .bonus-card .valor { font-size: 0.85rem; color: #aaa; text-decoration: line-through; }
+    .bonus-gratis-label {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--verde);
+      margin-top: 20px;
+    }
+
+    /* OFERTA */
+    .oferta {
+      background: var(--escuro);
+      padding: 70px 20px;
+      text-align: center;
+    }
+    .oferta .urgencia {
+      display: inline-block;
+      background: #c0392b;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 8px 20px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+    }
+    .oferta h2 { font-size: 1.9rem; font-weight: 900; color: #fff; margin-bottom: 8px; }
+    .oferta .sub { color: #aaa; margin-bottom: 40px; }
+    .preco-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 420px;
+      margin: 0 auto 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .timer-label { font-size: 0.85rem; color: #888; margin-bottom: 12px; }
+    .timer {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .timer-bloco {
+      background: var(--escuro);
+      color: #fff;
+      border-radius: 10px;
+      padding: 12px 16px;
+      min-width: 64px;
+    }
+    .timer-bloco .num { font-size: 2rem; font-weight: 900; color: var(--laranja); display: block; line-height: 1; }
+    .timer-bloco .lab { font-size: 0.65rem; color: #aaa; margin-top: 2px; }
+    .de { font-size: 0.9rem; color: #aaa; text-decoration: line-through; margin-bottom: 4px; }
+    .por { font-size: 0.85rem; color: #888; margin-bottom: 4px; }
+    .preco { font-size: 3.2rem; font-weight: 900; color: var(--laranja); line-height: 1; margin-bottom: 6px; }
+    .preco sup { font-size: 1.4rem; }
+    .parcelado { font-size: 0.85rem; color: #888; margin-bottom: 24px; }
+    .selos {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .selo { font-size: 0.78rem; color: #888; display: flex; align-items: center; gap: 4px; }
+
+    /* DEPOIMENTOS */
+    .depoimentos {
+      padding: 60px 20px;
+      background: var(--cinza);
+      text-align: center;
+    }
+    .depoimentos h2 { font-size: 1.9rem; font-weight: 900; margin-bottom: 8px; }
+    .depoimentos h2 span { color: var(--laranja); }
+    .depoimentos .sub { color: #888; margin-bottom: 40px; }
+    .depos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 780px;
+      margin: 0 auto 40px;
+    }
+    .depo-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: left;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .estrelas { color: var(--amarelo); font-size: 1rem; margin-bottom: 10px; }
+    .depo-card p { font-size: 0.88rem; color: #444; font-style: italic; margin-bottom: 16px; line-height: 1.7; }
+    .depo-autor { display: flex; align-items: center; gap: 10px; }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--laranja), var(--amarelo));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      font-size: 1rem;
+    }
+    .depo-autor strong { font-size: 0.85rem; display: block; }
+    .depo-autor span { font-size: 0.75rem; color: #888; }
+
+    /* GARANTIA */
+    .garantia {
+      padding: 60px 20px;
+      text-align: center;
+      background: #fff;
+    }
+    .garantia-box {
+      border: 3px solid var(--verde);
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .garantia .icone { font-size: 4rem; margin-bottom: 16px; }
+    .garantia h2 { font-size: 1.6rem; font-weight: 900; color: var(--verde); margin-bottom: 14px; }
+    .garantia p { font-size: 0.95rem; color: #555; line-height: 1.8; }
+
+    /* FAQ */
+    .faq {
+      background: var(--cinza);
+      padding: 60px 20px;
+    }
+    .faq h2 { font-size: 1.9rem; font-weight: 900; text-align: center; margin-bottom: 40px; }
+    .faq-lista { max-width: 680px; margin: 0 auto 40px; }
+    .faq-item { background: #fff; border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+    .faq-q {
+      padding: 18px 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--escuro);
+      user-select: none;
+    }
+    .faq-q:hover { color: var(--laranja); }
+    .seta { transition: transform 0.3s; font-size: 0.8rem; color: var(--laranja); }
+    .seta.open { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s;
+      font-size: 0.9rem;
+      color: #555;
+      padding: 0 20px;
+      line-height: 1.7;
+    }
+    .faq-a.aberto { max-height: 200px; padding: 0 20px 18px; }
+
+    /* RODAPÉ */
+    footer {
+      background: var(--escuro);
+      color: #666;
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.8rem;
+    }
+    footer a { color: #666; text-decoration: none; margin: 0 8px; }
+    footer a:hover { color: var(--laranja); }
+
+    /* RESPONSIVO */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.7rem; }
+      .preco { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="tag">⭐ Mais de 100 receitas testadas</div>
+    <div class="container">
+      <h1>Chega de fazer só <span>frango e batata</span> na sua airfryer</h1>
+      <p class="subtitulo">Descubra tudo que dá pra preparar nela — de entradas até sobremesas — com temperatura e tempo certinho em cada receita.</p>
+      <div class="hero-mockup">
+        <img src="public/images/capa.png" alt="100 Receitas na Airfryer — De Entradas até Sobremesas"/>
+      </div>
+      <div class="seta-animada">👇</div>
+      <a href="#oferta" class="btn-cta">
+        QUERO MINHAS 100 RECEITAS AGORA
+        <small>Acesso imediato após o pagamento</small>
+      </a>
+    </div>
+  </section>
+
+  <!-- DIVISOR -->
+  <div class="divisor">
+    <div class="container">
+      <p>Sua airfryer consegue fazer <strong>pizza, brownie, costelinha, salmão, churros e muito mais.</strong> O problema é que ninguém te mostrou como.</p>
+    </div>
+  </div>
+
+  <!-- PROBLEMA -->
+  <section class="problema">
+    <div class="container">
+      <h2>Você se identifica com <span>alguma dessas situações?</span></h2>
+      <ul class="dores">
+        <li>Sua airfryer fica parada na bancada sem uso</li>
+        <li>Você repete as mesmas receitas toda semana</li>
+        <li>Chega cansada do trabalho e trava na frente da geladeira</li>
+        <li>Fica no YouTube perdendo tempo procurando o que fazer</li>
+        <li>Sente que jogou dinheiro fora no aparelho</li>
+      </ul>
+      <p style="color:#888;font-size:0.95rem;">Se você marcou pelo menos uma, esse livro foi feito pra você.</p>
+    </div>
+  </section>
+
+  <!-- SOLUÇÃO -->
+  <section class="solucao">
+    <div class="container">
+      <h2>Apresentando: <span>100 Receitas na Airfryer</span></h2>
+      <p>O guia completo com 100 receitas testadas, organizadas por categoria, com ingredientes, modo de preparo, temperatura e tempo exatos.</p>
+      <div class="categorias-grid">
+        <div class="cat-card"><div class="emoji">🥗</div><strong>Entradas & Petiscos</strong><span>18 receitas</span></div>
+        <div class="cat-card"><div class="emoji">🍗</div><strong>Frango</strong><span>18 receitas</span></div>
+        <div class="cat-card"><div class="emoji">🥩</div><strong>Carnes Bovinas</strong><span>14 receitas</span></div>
+        <div class="cat-card"><div class="emoji">🥓</div><strong>Carnes Suínas</strong><span>9 receitas</span></div>
+        <div class="cat-card"><div class="emoji">🍕</div><strong>Massas & Pães</strong><span>15 receitas</span></div>
+        <div class="cat-card"><div class="emoji">🐟</div><strong>Peixes & Frutos do Mar</strong><span>11 receitas</span></div>
+        <div class="cat-card"><div class="emoji">🍰</div><strong>Sobremesas</strong><span>15 receitas</span></div>
+      </div>
+      <a href="#oferta" class="btn-cta">QUERO O LIVRO COMPLETO →</a>
+    </div>
+  </section>
+
+  <!-- RECEITAS DESTAQUE -->
+  <section class="receitas-destaque">
+    <div class="container">
+      <h2>Algumas receitas que você vai <span>encontrar</span></h2>
+      <p class="sub">E ainda tem mais 90 te esperando dentro do livro</p>
+      <div class="receitas-grid">
+        <div class="receita-card"><div class="receita-img"><img src="public/images/receita-frango.jpg" alt="Frango Empanado"/></div><div class="receita-info"><strong>Frango Empanado Perfeito</strong><span>Crocante por fora, suculento por dentro</span></div></div>
+        <div class="receita-card"><div class="receita-img"><img src="public/images/receita-picanha.jpg" alt="Picanha na Airfryer"/></div><div class="receita-info"><strong>Picanha na Airfryer</strong><span>Macia e dourada em poucos minutos</span></div></div>
+        <div class="receita-card"><div class="receita-img"><img src="public/images/receita-pizza.jpg" alt="Pizza com Borda de Catupiry"/></div><div class="receita-info"><strong>Pizza com Borda de Catupiry</strong><span>Melhor que a da pizzaria</span></div></div>
+        <div class="receita-card"><div class="receita-img"><img src="public/images/receita-brownie.jpg" alt="Brownie na Airfryer"/></div><div class="receita-info"><strong>Brownie na Airfryer</strong><span>Molhadinho e pronto em 15 min</span></div></div>
+        <div class="receita-card"><div class="receita-img"><img src="public/images/receita-camarao.jpg" alt="Camarão Empanado"/></div><div class="receita-info"><strong>Camarão Empanado</strong><span>Entrada perfeita para qualquer ocasião</span></div></div>
+        <div class="receita-card"><div class="receita-img"><img src="public/images/receita-costelinha.jpg" alt="Costelinha Barbecue"/></div><div class="receita-info"><strong>Costelinha Barbecue</strong><span>Cai do osso, cheia de sabor</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section class="beneficios">
+    <div class="container">
+      <h2>Por que esse livro é <span>diferente?</span></h2>
+      <div class="ben-lista">
+        <div class="ben-item"><div class="ben-icone">✓</div><div class="ben-texto"><strong>Funciona em qualquer airfryer</strong><span>Compatível com todos os modelos e tamanhos do mercado.</span></div></div>
+        <div class="ben-item"><div class="ben-icone">⚡</div><div class="ben-texto"><strong>Receitas rápidas para o dia a dia</strong><span>Mesmo chegando destruída do trabalho, você encontra algo prático para fazer.</span></div></div>
+        <div class="ben-item"><div class="ben-icone">🛒</div><div class="ben-texto"><strong>Ingredientes fáceis de achar</strong><span>Tudo disponível em qualquer supermercado, sem complicação.</span></div></div>
+        <div class="ben-item"><div class="ben-icone">♾️</div><div class="ben-texto"><strong>Acesso para sempre, offline</strong><span>Baixou, é seu. Lê no celular, tablet ou computador sem precisar de internet.</span></div></div>
+        <div class="ben-item"><div class="ben-icone">👨‍👩‍👧</div><div class="ben-texto"><strong>Para toda a família</strong><span>Do básico ao sofisticado — receitas para o dia a dia e para impressionar nas visitas.</span></div></div>
+      </div>
+      <a href="#oferta" class="btn-cta">QUERO COMEÇAR AGORA →</a>
+    </div>
+  </section>
+
+  <!-- BÔNUS -->
+  <section class="bonus">
+    <div class="container">
+      <span class="badge">🎁 Bônus exclusivos</span>
+      <h2>Você também leva esses bônus <br/>gratuitamente</h2>
+      <p class="sub">Inclusos no seu pedido sem custo adicional</p>
+      <div class="bonus-grid">
+        <div class="bonus-card">
+          <div class="bonus-num">1</div>
+          <span class="emoji">🌡️</span>
+          <h3>Guia de Temperaturas e Tempos</h3>
+          <p>Tabela completa com temperatura ideal e tempo certinho para os principais alimentos.</p>
+          <span class="valor">Valor: R$17,00</span>
+        </div>
+        <div class="bonus-card">
+          <div class="bonus-num">2</div>
+          <span class="emoji">🛒</span>
+          <h3>Lista de Compras Semanal</h3>
+          <p>Lista organizada com os ingredientes mais usados para facilitar suas compras.</p>
+          <span class="valor">Valor: R$9,90</span>
+        </div>
+        <div class="bonus-card">
+          <div class="bonus-num">3</div>
+          <span class="emoji">🥦</span>
+          <h3>Guia de Substituições Saudáveis</h3>
+          <p>Substitua ingredientes por versões mais leves sem perder o sabor das suas receitas.</p>
+          <span class="valor">Valor: R$17,00</span>
+        </div>
+      </div>
+      <p class="bonus-gratis-label">Tudo isso incluso GRÁTIS no seu pedido ✅</p>
+    </div>
+  </section>
+
+  <!-- OFERTA -->
+  <section class="oferta" id="oferta">
+    <div class="container">
+      <span class="urgencia">⏰ Oferta por tempo limitado</span>
+      <h2>Garanta agora com condição especial</h2>
+      <p class="sub">Essa oferta pode encerrar a qualquer momento</p>
+      <div class="preco-card">
+        <p class="timer-label">Essa condição expira em:</p>
+        <div class="timer">
+          <div class="timer-bloco"><span class="num" id="min">15</span><div class="lab">MIN</div></div>
+          <div class="timer-bloco"><span class="num" id="seg">00</span><div class="lab">SEG</div></div>
+        </div>
+        <p class="de">De R$97,00</p>
+        <p class="por">Por apenas</p>
+        <p class="preco"><sup>R$</sup>37</p>
+        <p class="parcelado">ou 3x de R$13,24 sem juros</p>
+        <a href="https://seulink.hotmart.com" class="btn-cta">
+          QUERO MINHAS 100 RECEITAS POR R$37
+          <small>🔒 Pagamento 100% seguro • Acesso imediato</small>
+        </a>
+        <div class="selos">
+          <span class="selo">🔒 Pagamento Seguro</span>
+          <span class="selo">⚡ Acesso Imediato</span>
+          <span class="selo">🛡️ Garantia de 7 Dias</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="depoimentos">
+    <div class="container">
+      <h2>Quem já tem <span>não larga</span></h2>
+      <p class="sub">Veja o que estão falando</p>
+      <div class="depos-grid">
+        <div class="depo-card">
+          <div class="estrelas">★★★★★</div>
+          <p>"Eu tinha a airfryer parada faz meses. Comprei o livro na sexta e no fim de semana já fiz 4 receitas novas. Minha família amou o brownie!"</p>
+          <div class="depo-autor"><div class="avatar">A</div><div><strong>Ana Paula</strong><span>34 anos — São Paulo</span></div></div>
+        </div>
+        <div class="depo-card">
+          <div class="estrelas">★★★★★</div>
+          <p>"As receitas são simples, os ingredientes são fáceis de achar e cada uma tem o tempo e a temperatura certinho. Valeu muito mais que R$37."</p>
+          <div class="depo-autor"><div class="avatar">F</div><div><strong>Fernanda</strong><span>29 anos — Belo Horizonte</span></div></div>
+        </div>
+        <div class="depo-card">
+          <div class="estrelas">★★★★★</div>
+          <p>"Comprei com o pé atrás mas a garantia me deu segurança. Não precisei usar porque adorei. O churros ficou perfeito na primeira tentativa!"</p>
+          <div class="depo-autor"><div class="avatar">J</div><div><strong>Juliana</strong><span>41 anos — Curitiba</span></div></div>
+        </div>
+      </div>
+      <a href="#oferta" class="btn-cta">QUERO O MEU AGORA →</a>
+    </div>
+  </section>
+
+  <!-- GARANTIA -->
+  <section class="garantia">
+    <div class="container">
+      <div class="garantia-box">
+        <div class="icone">🛡️</div>
+        <h2>Garantia Incondicional de 7 Dias</h2>
+        <p>Se por qualquer motivo você não gostar do material, basta enviar um e-mail em até <strong>7 dias</strong> e devolvemos <strong>100% do seu dinheiro</strong>.<br/><br/>Sem perguntas. Sem burocracia.<br/>O risco é todo nosso.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <h2>Dúvidas Frequentes</h2>
+      <div class="faq-lista">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Como vou receber o livro? <span class="seta">▼</span></div>
+          <div class="faq-a">Imediatamente após o pagamento você recebe o link para baixar o PDF no seu e-mail.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Funciona no celular? <span class="seta">▼</span></div>
+          <div class="faq-a">Sim, em qualquer dispositivo — celular, tablet ou computador.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Precisa de internet para acessar? <span class="seta">▼</span></div>
+          <div class="faq-a">Só para baixar. Depois o acesso é offline, quando e onde quiser.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Para qual modelo de airfryer funciona? <span class="seta">▼</span></div>
+          <div class="faq-a">Para qualquer modelo e tamanho de airfryer do mercado.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">E se eu não gostar? <span class="seta">▼</span></div>
+          <div class="faq-a">Você tem 7 dias de garantia. Pediu o reembolso, recebeu de volta. Simples assim.</div>
+        </div>
+      </div>
+      <a href="#oferta" class="btn-cta">GARANTIR MINHA CÓPIA AGORA →</a>
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p>© 2026 100 Receitas na Airfryer. Todos os direitos reservados.</p>
+    <p style="margin-top:8px;"><a href="#">Política de Privacidade</a> • <a href="#">Termos de Uso</a></p>
+  </footer>
+
+  <script>
+    // TIMER
+    let total = 15 * 60;
+    const min = document.getElementById('min');
+    const seg = document.getElementById('seg');
+    setInterval(() => {
+      if (total <= 0) return;
+      total--;
+      min.textContent = String(Math.floor(total / 60)).padStart(2, '0');
+      seg.textContent = String(total % 60).padStart(2, '0');
+    }, 1000);
+
+    // FAQ
+    function toggleFaq(el) {
+      const a = el.nextElementSibling;
+      const s = el.querySelector('.seta');
+      a.classList.toggle('aberto');
+      s.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
