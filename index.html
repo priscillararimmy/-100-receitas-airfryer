@@ -17,7 +17,24 @@
     document.head.appendChild(a);
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>100 Receitas na Airfryer — De Entradas até Sobremesas</title>
+  <title>100 Receitas na Airfryer — De Entradas até Sobremesas | Juh Cozinha</title>
+  <meta name="description" content="Descubra 100 receitas completas para airfryer — de entradas até sobremesas. Cada receita com ingredientes, temperatura e tempo certinho. Por apenas R$37."/>
+  <meta name="keywords" content="receitas airfryer, livro receitas airfryer, airfryer receitas, frango airfryer, sobremesas airfryer, pizza airfryer"/>
+  <meta name="author" content="Juh Cozinha"/>
+  <meta name="robots" content="index, follow"/>
+
+  <!-- Open Graph (WhatsApp, Facebook, Instagram) -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="100 Receitas na Airfryer — De Entradas até Sobremesas"/>
+  <meta property="og:description" content="Chega de fazer só frango e batata frita! São 100 receitas completas com temperatura e tempo certinho por apenas R$37."/>
+  <meta property="og:image" content="public/images/banner-hero.jpg"/>
+  <meta property="og:locale" content="pt_BR"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="100 Receitas na Airfryer — Juh Cozinha"/>
+  <meta name="twitter:description" content="100 receitas completas para airfryer por R$37. De entradas até sobremesas."/>
+  <meta name="twitter:image" content="public/images/banner-hero.jpg"/>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -63,11 +80,171 @@
       box-shadow: 0 8px 24px rgba(255,107,53,0.4);
     }
     .btn-cta:hover { background: var(--laranja-escuro); transform: scale(1.03); box-shadow: 0 12px 32px rgba(255,107,53,0.5); }
+
+    /* CARROSSEL DEPOIMENTOS FOTO */
+    .depos-fotos { padding: 60px 0 40px; background: #fff; overflow: hidden; }
+    .depos-fotos h3 { text-align: center; font-size: 1.4rem; font-weight: 700; color: #222; margin-bottom: 28px; padding: 0 20px; }
+    .depos-fotos h3 strong { font-weight: 900; }
+    .depos-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 8px 20px 24px;
+      scrollbar-width: none;
+      justify-content: center;
+    }
+    .depos-scroll::-webkit-scrollbar { display: none; }
+    .depo-foto-card {
+      flex-shrink: 0;
+      width: 85vw;
+      max-width: 320px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      border: 1px solid #eee;
+      scroll-snap-align: center;
+      transition: transform 0.3s;
+    }
+    .depo-foto-card:hover { transform: scale(1.03); }
+    .depo-foto-card img { width: 100%; height: auto; display: block; }
+    .depos-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--laranja);
+      font-size: 0.85rem;
+      font-weight: 700;
+      opacity: 0.75;
+      margin-top: -8px;
+    }
+    @keyframes bounceLeft  { 0%,100%{transform:translateX(0)} 50%{transform:translateX(-5px)} }
+    @keyframes bounceRight { 0%,100%{transform:translateX(0)} 50%{transform:translateX(5px)} }
+    .depos-hint .arr-left  { animation: bounceLeft  1s ease-in-out infinite; }
+    .depos-hint .arr-right { animation: bounceRight 1s ease-in-out infinite; }
+
+    /* SOBRE A JUH */
+    .sobre-juh { padding: 60px 0; background: #fafafa; }
+    .juh-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      background: #fff;
+      border-radius: 24px;
+      padding: 36px 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      text-align: center;
+    }
+    @media (min-width: 600px) {
+      .juh-box { flex-direction: row; text-align: left; }
+    }
+    .juh-foto {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--laranja);
+      box-shadow: 0 6px 20px rgba(255,107,53,0.25);
+      flex-shrink: 0;
+    }
+    .juh-texto h2 { font-size: 1.6rem; font-weight: 900; text-transform: uppercase; margin-bottom: 12px; }
+    .juh-texto h2 span { color: var(--laranja); }
+    .juh-texto p { font-size: 1rem; color: #555; line-height: 1.7; }
+
+    /* SEÇÃO PREÇO VISUAL */
+    .preco-visual { padding: 60px 0; background: linear-gradient(to bottom, #fff8f5, #fff); }
+    .preco-visual-box {
+      background: #fff;
+      border: 4px solid var(--laranja);
+      border-radius: 24px;
+      padding: 32px 24px;
+      box-shadow: 0 12px 40px rgba(255,107,53,0.15);
+    }
+    .preco-visual-titulo {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 28px;
+      letter-spacing: 0.5px;
+    }
+    .preco-visual-titulo span { color: var(--laranja); }
+    .preco-visual-inner { display: flex; flex-direction: column; gap: 32px; align-items: center; }
+    @media (min-width: 640px) {
+      .preco-visual-inner { flex-direction: row; align-items: flex-start; }
+      .preco-visual-img { width: 45%; }
+      .preco-visual-conteudo { width: 55%; }
+    }
+    .preco-visual-img img { width: 100%; max-width: 320px; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); display: block; margin: 0 auto; }
+    .preco-lista { list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 10px; }
+    .preco-lista li { font-weight: 800; font-size: 1rem; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .preco-lista .plus { color: var(--laranja); font-size: 1.4rem; font-weight: 900; line-height: 1; }
+    .preco-visual-valor { background: #fafafa; border: 1px solid #eee; border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 16px; }
+    .pv-de { color: #888; font-size: 1rem; font-weight: 700; }
+    .pv-de s { text-decoration: line-through; }
+    .pv-label { color: #888; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-top: 4px; }
+    .pv-preco { font-size: 3.2rem; font-weight: 900; color: var(--laranja); line-height: 1; margin: 6px 0; }
+    .pv-preco sup { font-size: 1.2rem; vertical-align: super; }
+    .pv-parcelado { color: #555; font-size: 0.9rem; font-weight: 600; }
+    #oferta { scroll-margin-top: 550px; background: var(--amarelo); color: #3E2726; box-shadow: 0 8px 24px rgba(255,184,0,0.4); border-bottom-color: #cc9400; }
+    #oferta:hover { background: #e6a800; color: #3E2726; }
+    .pv-selos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .pv-selos span {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #555;
+      background: #f3f3f3;
+      border: 1px solid #e0e0e0;
+      border-radius: 999px;
+      padding: 4px 12px;
+    }
+    .pv-timer { text-align: center; margin-bottom: 16px; }
+    .pv-timer-label { font-size: 0.85rem; font-weight: 700; color: #dc2626; text-transform: uppercase; margin-bottom: 8px; }
+    .pv-timer-blocos { display: flex; justify-content: center; align-items: center; gap: 8px; }
+    .pv-timer-bloco { background: var(--escuro); color: #fff; border-radius: 10px; padding: 10px 18px; text-align: center; min-width: 64px; }
+    .pv-timer-bloco span { display: block; font-size: 2rem; font-weight: 900; line-height: 1; }
+    .pv-timer-bloco small { font-size: 0.7rem; letter-spacing: 1px; opacity: 0.7; }
+    .pv-timer-sep { font-size: 2rem; font-weight: 900; color: var(--escuro); }
+
+    .pv-urgencia {
+      text-align: center;
+      color: #dc2626;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      background: #fef2f2;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-top: 12px;
+      display: inline-block;
+      width: 100%;
+    }
+
+    @keyframes saltitar {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.06); }
+    }
+    .btn-cta { animation: saltitar 1.6s ease-in-out infinite; }
+    .btn-cta:hover { animation: none; }
     .btn-cta small { display: block; font-size: 0.75rem; font-weight: 400; opacity: 0.85; margin-top: 4px; text-transform: none; letter-spacing: 0; }
 
     /* TOPO / HERO */
     .hero {
-      background: url('public/images/100 Receitas Banner.jpg') center center / cover no-repeat;
+      background: url('public/images/banner-hero.jpg') center center / cover no-repeat;
       padding: 50px 20px 40px;
       text-align: center;
       border-bottom: 3px solid var(--laranja);
@@ -140,17 +317,53 @@
     }
     .problema h2 { font-size: 1.9rem; font-weight: 900; margin-bottom: 30px; }
     .problema h2 span { color: var(--laranja); }
-    .dores { list-style: none; max-width: 560px; margin: 0 auto 30px; text-align: left; }
+    .dores { list-style: none; max-width: 520px; margin: 0 auto 24px; text-align: left; display: flex; flex-direction: column; gap: 12px; }
     .dores li {
-      padding: 14px 16px;
-      margin-bottom: 10px;
-      background: #FFF5F2;
-      border-left: 4px solid var(--laranja);
-      border-radius: 0 8px 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: #fff5f5;
+      border: 2px solid #fee2e2;
+      border-radius: 12px;
       font-size: 1rem;
-      color: #444;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s, border-color 0.2s;
     }
-    .dores li::before { content: "😔 "; }
+    .dores li.marcado {
+      background: #fff8f0;
+      border-color: var(--laranja);
+      color: var(--laranja-escuro);
+    }
+    .dor-check {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s;
+      background: #fff;
+    }
+    .dor-check svg {
+      width: 14px;
+      height: 14px;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .dores li.marcado .dor-check {
+      background: var(--laranja);
+      border-color: var(--laranja);
+    }
+    .dores li.marcado .dor-check svg { opacity: 1; }
+    .dores-fechamento { color: #888; font-size: 0.95rem; text-align: center; transition: color 0.3s; }
+    .dores-fechamento.ativo { color: var(--laranja); font-weight: 700; }
 
     /* SOLUÇÃO */
     .solucao {
@@ -159,9 +372,31 @@
       padding: 60px 20px;
       text-align: center;
     }
-    .solucao h2 { font-size: 1.9rem; font-weight: 900; margin-bottom: 10px; }
+    .solucao h2 { font-size: 2rem; font-weight: 900; margin-bottom: 32px; text-transform: uppercase; }
     .solucao h2 span { color: var(--laranja); }
-    .solucao p { color: #ccc; font-size: 1rem; margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .solucao-lista {
+      list-style: none;
+      max-width: 540px;
+      margin: 0 auto 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+    }
+    .solucao-lista li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #e5e5e5;
+    }
+    .solucao-lista li svg {
+      width: 24px;
+      height: 24px;
+      color: var(--laranja);
+      flex-shrink: 0;
+    }
 
     /* CATEGORIAS */
     .categorias-grid {
@@ -192,35 +427,37 @@
     .receitas-destaque h2 span { color: var(--laranja); }
     .receitas-destaque .sub { color: #888; margin-bottom: 40px; }
 
-    .carousel-wrapper { position: relative; }
-    .receitas-grid {
+    .receitas-cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      max-width: 780px;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 24px;
+      max-width: 960px;
       margin: 0 auto 40px;
     }
-    .receita-card {
-      border: 2px solid #eee;
-      border-radius: 14px;
+    @media (min-width: 500px) { .receitas-cards-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 800px) { .receitas-cards-grid { grid-template-columns: repeat(3, 1fr); } }
+    .receita-card-novo {
+      background: #f9f9f9;
+      border-radius: 16px;
       overflow: hidden;
-      text-align: left;
-      transition: box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      transition: box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
     }
-    .receita-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-    .receita-img {
-      height: 140px;
-      overflow: hidden;
-    }
-    .receita-img img {
+    .receita-card-novo:hover { box-shadow: 0 10px 28px rgba(0,0,0,0.13); }
+    .receita-card-novo img {
       width: 100%;
-      height: 100%;
+      aspect-ratio: 4/5;
       object-fit: cover;
       display: block;
     }
-    .receita-info { padding: 14px; }
-    .receita-info strong { font-size: 0.9rem; display: block; margin-bottom: 4px; }
-    .receita-info span { font-size: 0.78rem; color: var(--cinza-medio); }
+    .receita-card-info {
+      padding: 18px;
+      text-align: center;
+    }
+    .receita-card-info h3 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; color: #111; }
+    .receita-card-info p { font-size: 0.85rem; color: #666; }
 
     .carousel-btn {
       display: none;
@@ -475,21 +712,29 @@
     .depo-autor span { font-size: 0.75rem; color: #888; }
 
     /* GARANTIA */
-    .garantia {
-      padding: 60px 20px;
-      text-align: center;
-      background: #fff;
-    }
+    .garantia { padding: 40px 20px; background: #fff; }
     .garantia-box {
-      border: 3px solid var(--verde);
-      border-radius: 20px;
-      padding: 40px 30px;
+      border: 2px solid var(--verde);
+      border-radius: 16px;
+      padding: 24px 28px;
       max-width: 560px;
       margin: 0 auto;
+      background: #f0faf4;
     }
-    .garantia .icone { font-size: 4rem; margin-bottom: 16px; }
-    .garantia h2 { font-size: 1.6rem; font-weight: 900; color: var(--verde); margin-bottom: 14px; }
-    .garantia p { font-size: 0.95rem; color: #555; line-height: 1.8; }
+    .garantia-inner { display: flex; align-items: center; gap: 20px; }
+    .garantia-icone {
+      width: 56px;
+      height: 56px;
+      background: var(--verde);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .garantia-icone svg { width: 30px; height: 30px; color: #fff; }
+    .garantia h2 { font-size: 1.1rem; font-weight: 900; color: var(--verde); margin-bottom: 4px; }
+    .garantia p { font-size: 0.9rem; color: #555; line-height: 1.6; }
 
     /* FAQ */
     .faq {
@@ -561,64 +806,53 @@
     <div class="container">
       <h2>Algumas receitas que você vai <span>encontrar</span></h2>
       <p class="sub">E ainda tem mais 90 te esperando dentro do livro</p>
-      <div class="carousel-wrapper">
-        <button class="carousel-btn prev" onclick="moverCarrossel(-1)" aria-label="Anterior">&#8592;</button>
-        <div class="receitas-grid" id="carrosselReceitas">
-          <div class="receita-card"><div class="receita-img"><img src="public/images/receita-picanha.jpg" alt="Picanha na Airfryer"/></div><div class="receita-info"><strong>Picanha na Airfryer</strong><span>Macia e dourada em poucos minutos</span></div></div>
-          <div class="receita-card"><div class="receita-img"><img src="public/images/receita-pizza.jpg" alt="Pizza com Borda de Catupiry"/></div><div class="receita-info"><strong>Pizza com Borda de Catupiry</strong><span>Melhor que a da pizzaria</span></div></div>
-          <div class="receita-card"><div class="receita-img"><img src="public/images/receita-brownie.jpg" alt="Brownie na Airfryer"/></div><div class="receita-info"><strong>Brownie na Airfryer</strong><span>Molhadinho e pronto em 15 min</span></div></div>
-          <div class="receita-card"><div class="receita-img"><img src="public/images/bolo-cenoura.jpg" alt="Bolo Cenoura"/></div><div class="receita-info"><strong>Bolo Cenoura</strong><span>Clássico que nunca sai de moda!</span></div></div>
-          <div class="receita-card"><div class="receita-img"><img src="public/images/receita-camarao.jpg" alt="Camarão Empanado"/></div><div class="receita-info"><strong>Camarão Empanado</strong><span>Entrada perfeita para qualquer ocasião</span></div></div>
-          <div class="receita-card"><div class="receita-img"><img src="public/images/receita-costelinha.jpg" alt="Costelinha Barbecue"/></div><div class="receita-info"><strong>Costelinha Barbecue</strong><span>Cai do osso, cheia de sabor</span></div></div>
+      <div class="receitas-cards-grid">
+        <div class="receita-card-novo">
+          <img loading="lazy" src="public/images/receita-picanha.jpg" alt="Picanha na Airfryer"/>
+          <div class="receita-card-info">
+            <h3>PICANHA NA AIRFRYER</h3>
+            <p>Macia e dourada em poucos minutos</p>
+          </div>
         </div>
-        <button class="carousel-btn next" onclick="moverCarrossel(1)" aria-label="Próximo">&#8594;</button>
+        <div class="receita-card-novo">
+          <img loading="lazy" src="public/images/receita-pizza.jpg" alt="Pizza com Borda de Catupiry"/>
+          <div class="receita-card-info">
+            <h3>PIZZA COM BORDA DE CATUPIRY</h3>
+            <p>Melhor que a da pizzaria</p>
+          </div>
+        </div>
+        <div class="receita-card-novo">
+          <img loading="lazy" src="public/images/receita-brownie.jpg" alt="Brownie na Airfryer"/>
+          <div class="receita-card-info">
+            <h3>BROWNIE NA AIRFRYER</h3>
+            <p>Molhadinho e pronto em 15 min</p>
+          </div>
+        </div>
+        <div class="receita-card-novo">
+          <img loading="lazy" src="public/images/bolo-cenoura.jpg" alt="Bolo Cenoura"/>
+          <div class="receita-card-info">
+            <h3>BOLO DE CENOURA</h3>
+            <p>Clássico que nunca sai de moda</p>
+          </div>
+        </div>
+        <div class="receita-card-novo">
+          <img loading="lazy" src="public/images/receita-camarao.jpg" alt="Camarão Empanado"/>
+          <div class="receita-card-info">
+            <h3>CAMARÃO EMPANADO</h3>
+            <p>Entrada perfeita para qualquer ocasião</p>
+          </div>
+        </div>
+        <div class="receita-card-novo">
+          <img loading="lazy" src="public/images/receita-costelinha.jpg" alt="Costelinha Barbecue"/>
+          <div class="receita-card-info">
+            <h3>COSTELINHA BARBECUE</h3>
+            <p>Cai do osso, cheia de sabor</p>
+          </div>
+        </div>
       </div>
-      <div class="carousel-dots" id="carrosselDots"></div>
+      <a href="#oferta" class="btn-cta">QUERO AS RECEITAS!</a>
     </div>
   </section>
-  <script>
-    (function() {
-      var trilha = document.getElementById('carrosselReceitas');
-      var dotsEl = document.getElementById('carrosselDots');
-      var cards = trilha ? trilha.querySelectorAll('.receita-card') : [];
-      var atual = 0;
-
-      function criarDots() {
-        dotsEl.innerHTML = '';
-        cards.forEach(function(_, i) {
-          var d = document.createElement('span');
-          if (i === 0) d.classList.add('ativo');
-          d.addEventListener('click', function() { irPara(i); });
-          dotsEl.appendChild(d);
-        });
-      }
-
-      function atualizarDots() {
-        var dots = dotsEl.querySelectorAll('span');
-        dots.forEach(function(d, i) { d.classList.toggle('ativo', i === atual); });
-      }
-
-      function irPara(idx) {
-        if (!trilha || cards.length === 0) return;
-        atual = Math.max(0, Math.min(idx, cards.length - 1));
-        var card = cards[atual];
-        trilha.scrollTo({ left: card.offsetLeft - trilha.offsetLeft, behavior: 'smooth' });
-        atualizarDots();
-      }
-
-      window.moverCarrossel = function(dir) { irPara(atual + dir); };
-
-      trilha && trilha.addEventListener('scroll', function() {
-        var meio = trilha.scrollLeft + trilha.clientWidth / 2;
-        cards.forEach(function(c, i) {
-          if (c.offsetLeft <= meio && c.offsetLeft + c.offsetWidth > meio) atual = i;
-        });
-        atualizarDots();
-      });
-
-      criarDots();
-    })();
-  </script>
 
   <!-- DIVISOR -->
   <div class="divisor">
@@ -631,50 +865,50 @@
   <section class="problema">
     <div class="container">
       <h2>Você se identifica com <span>alguma dessas situações?</span></h2>
-      <ul class="dores">
-        <li>Sua airfryer fica parada na bancada sem uso</li>
-        <li>Você repete as mesmas receitas toda semana</li>
-        <li>Chega cansada do trabalho e trava na frente da geladeira</li>
-        <li>Fica no YouTube perdendo tempo procurando o que fazer</li>
-        <li>Sente que jogou dinheiro fora no aparelho</li>
+      <ul class="dores" id="dores-lista">
+        <li onclick="marcarDor(this)">
+          <span class="dor-check"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+          Sua airfryer fica parada na bancada sem uso
+        </li>
+        <li onclick="marcarDor(this)">
+          <span class="dor-check"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+          Você repete as mesmas receitas toda semana
+        </li>
+        <li onclick="marcarDor(this)">
+          <span class="dor-check"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+          Chega cansado(a) do trabalho e trava na frente da geladeira
+        </li>
+        <li onclick="marcarDor(this)">
+          <span class="dor-check"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+          Fica no YouTube perdendo tempo procurando o que fazer
+        </li>
+        <li onclick="marcarDor(this)">
+          <span class="dor-check"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+          Sente que jogou dinheiro fora no aparelho
+        </li>
       </ul>
-      <p style="color:#888;font-size:0.95rem;">Se você marcou pelo menos uma, esse livro foi feito pra você.</p>
+      <p class="dores-fechamento" id="dores-fechamento">Clique nos itens que você se identifica</p>
     </div>
   </section>
 
   <!-- SOLUÇÃO -->
   <section class="solucao">
     <div class="container">
-      <h2>Apresentando: <span>100 Receitas na Airfryer</span></h2>
-      <p>O guia completo com 100 receitas testadas, organizadas por categoria, com ingredientes, modo de preparo, temperatura e tempo exatos.</p>
-      <div class="categorias-grid">
-        <div class="cat-card"><div class="emoji">🥗</div><strong>Entradas & Petiscos</strong><span>18 receitas</span></div>
-        <div class="cat-card"><div class="emoji">🍗</div><strong>Frango</strong><span>18 receitas</span></div>
-        <div class="cat-card"><div class="emoji">🥩</div><strong>Carnes Bovinas</strong><span>14 receitas</span></div>
-        <div class="cat-card"><div class="emoji">🥓</div><strong>Carnes Suínas</strong><span>9 receitas</span></div>
-        <div class="cat-card"><div class="emoji">🍕</div><strong>Massas & Pães</strong><span>15 receitas</span></div>
-        <div class="cat-card"><div class="emoji">🐟</div><strong>Peixes & Frutos do Mar</strong><span>11 receitas</span></div>
-        <div class="cat-card"><div class="emoji">🍰</div><strong>Sobremesas</strong><span>15 receitas</span></div>
-      </div>
+      <h2>O que você vai <span>encontrar:</span></h2>
+      <ul class="solucao-lista">
+        <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 18 receitas de Entradas & Petiscos</li>
+        <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 18 receitas de Frango</li>
+        <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 14 receitas de Carnes Bovinas</li>
+        <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 9 receitas de Carnes Suínas</li>
+        <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 15 receitas de Massas & Pães</li>
+        <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 11 receitas de Peixes & Frutos do Mar</li>
+        <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 15 receitas de Sobremesas</li>
+      </ul>
       <a href="#oferta" class="btn-cta">QUERO O LIVRO COMPLETO →</a>
     </div>
   </section>
 
 
-  <!-- BENEFÍCIOS -->
-  <section class="beneficios">
-    <div class="container">
-      <h2>Por que esse livro é <span>diferente?</span></h2>
-      <div class="ben-lista">
-        <div class="ben-item"><div class="ben-icone">✓</div><div class="ben-texto"><strong>Funciona em qualquer airfryer</strong><span>Compatível com todos os modelos e tamanhos do mercado.</span></div></div>
-        <div class="ben-item"><div class="ben-icone">⚡</div><div class="ben-texto"><strong>Receitas rápidas para o dia a dia</strong><span>Mesmo chegando destruída do trabalho, você encontra algo prático para fazer.</span></div></div>
-        <div class="ben-item"><div class="ben-icone">🛒</div><div class="ben-texto"><strong>Ingredientes fáceis de achar</strong><span>Tudo disponível em qualquer supermercado, sem complicação.</span></div></div>
-        <div class="ben-item"><div class="ben-icone">♾️</div><div class="ben-texto"><strong>Acesso para sempre, offline</strong><span>Baixou, é seu. Lê no celular, tablet ou computador sem precisar de internet.</span></div></div>
-        <div class="ben-item"><div class="ben-icone">👨‍👩‍👧</div><div class="ben-texto"><strong>Para toda a família</strong><span>Do básico ao sofisticado — receitas para o dia a dia e para impressionar nas visitas.</span></div></div>
-      </div>
-      <a href="#oferta" class="btn-cta">QUERO COMEÇAR AGORA →</a>
-    </div>
-  </section>
 
 
   <!-- BÔNUS -->
@@ -712,66 +946,101 @@
   </section>
   -->
 
-  <!-- OFERTA -->
-  <section class="oferta" id="oferta">
+  <!-- SEÇÃO PREÇO COM IMAGEM -->
+  <section class="preco-visual">
     <div class="container">
-      <span class="urgencia">⏰ Oferta por tempo limitado</span>
-      <h2>Garanta agora com condição especial</h2>
-      <p class="sub">Essa oferta pode encerrar a qualquer momento</p>
-      <div class="preco-card">
-        <p class="timer-label">Essa condição expira em:</p>
-        <div class="timer">
-          <div class="timer-bloco"><span class="num" id="min">15</span><div class="lab">MIN</div></div>
-          <div class="timer-bloco"><span class="num" id="seg">00</span><div class="lab">SEG</div></div>
-        </div>
-        <p class="de">De R$97,00</p>
-        <p class="por">Por apenas</p>
-        <p class="preco"><sup>R$</sup>37</p>
-        <a href="https://pay.hotmart.com/W106559158D?off=pcmkmbef" class="btn-cta">
-          COMPRAR AGORA!
-        </a>
-        <div class="selos">
-          <span class="selo">🔒 Pagamento Seguro</span>
-          <span class="selo">⚡ Acesso Imediato</span>
-          <span class="selo">🛡️ Garantia de 7 Dias</span>
+      <div class="preco-visual-box">
+        <h2 class="preco-visual-titulo">100 RECEITAS NA <span>AIRFRYER</span></h2>
+        <div class="preco-visual-inner">
+          <div class="preco-visual-img">
+            <img src="public/images/tablete.jpg" alt="100 Receitas na Airfryer"/>
+          </div>
+          <div class="preco-visual-conteudo">
+            <ul class="preco-lista">
+              <li><span class="plus">+</span> 100 RECEITAS COMPLETAS</li>
+              <li><span class="plus">+</span> DE ENTRADAS ATÉ SOBREMESAS</li>
+              <li><span class="plus">+</span> TEMPERATURA E TEMPO CERTINHO</li>
+              <li><span class="plus">+</span> MODO DE PREPARO PASSO A PASSO</li>
+              <li><span class="plus">+</span> ACESSO IMEDIATO EM PDF</li>
+            </ul>
+            <div class="pv-timer">
+              <p class="pv-timer-label">⏰ Essa condição expira em:</p>
+              <div class="pv-timer-blocos">
+                <div class="pv-timer-bloco"><span id="min">15</span><small>MIN</small></div>
+                <div class="pv-timer-sep">:</div>
+                <div class="pv-timer-bloco"><span id="seg">00</span><small>SEG</small></div>
+              </div>
+            </div>
+
+            <div class="preco-visual-valor">
+              <p class="pv-de">De <s>R$97,00</s></p>
+              <p class="pv-label">Por apenas</p>
+              <p class="pv-preco"><sup>R$</sup>37</p>
+            </div>
+            <a href="https://pay.hotmart.com/W106559158D?off=pcmkmbef" class="btn-cta" id="oferta">COMPRAR AGORA!</a>
+            <p class="pv-urgencia">⏰ Oferta Expira Hoje</p>
+            <div class="pv-selos">
+              <span>🔒 Pagamento Seguro</span>
+              <span>⚡ Acesso Imediato</span>
+              <span>🛡️ Garantia de 7 Dias</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DEPOIMENTOS -->
-  <section class="depoimentos">
+
+  <!-- SOBRE A JUH -->
+  <section class="sobre-juh">
     <div class="container">
-      <h2>Quem já tem <span>não larga</span></h2>
-      <p class="sub">Veja o que estão falando</p>
-      <div class="depos-grid">
-        <div class="depo-card">
-          <div class="estrelas">★★★★★</div>
-          <p>"Eu tinha a airfryer parada faz meses. Comprei o livro na sexta e no fim de semana já fiz 4 receitas novas. Minha família amou o brownie!"</p>
-          <div class="depo-autor"><div class="avatar">A</div><div><strong>Ana Paula</strong><span>34 anos — São Paulo</span></div></div>
-        </div>
-        <div class="depo-card">
-          <div class="estrelas">★★★★★</div>
-          <p>"As receitas são simples, os ingredientes são fáceis de achar e cada uma tem o tempo e a temperatura certinho. Valeu muito mais que R$37."</p>
-          <div class="depo-autor"><div class="avatar">F</div><div><strong>Fernanda</strong><span>29 anos — Belo Horizonte</span></div></div>
-        </div>
-        <div class="depo-card">
-          <div class="estrelas">★★★★★</div>
-          <p>"Comprei com o pé atrás mas a garantia me deu segurança. Não precisei usar porque adorei. O churros ficou perfeito na primeira tentativa!"</p>
-          <div class="depo-autor"><div class="avatar">J</div><div><strong>Juliana</strong><span>41 anos — Curitiba</span></div></div>
+      <div class="juh-box">
+        <img src="public/images/juh-cozinha.jpg" alt="Juh Cozinha" class="juh-foto"/>
+        <div class="juh-texto">
+          <h2>RECEITAS DA <span>JUH COZINHA</span></h2>
+          <p>Apaixonada por cozinha e por facilitar a vida de quem ama cozinhar, reuni as minhas melhores receitas para airfryer num único lugar. São 100 receitas testadas, com temperatura e tempo certinho, pra você nunca mais desperdiçar seu tempo tentando adivinhar como fazer.</p>
         </div>
       </div>
-      <a href="#oferta" class="btn-cta">QUERO O MEU AGORA →</a>
     </div>
   </section>
+
+  <!-- DEPOIMENTOS FOTO -->
+  <section class="depos-fotos">
+    <div class="container">
+      <h3><strong>Veja as mensagens</strong> que recebo quase todos os dias:</h3>
+    </div>
+    <div class="depos-scroll" id="depos-scroll">
+      <div class="depo-foto-card">
+        <img loading="lazy" src="public/images/depoimento-1.jpg" alt="Depoimento 1"/>
+      </div>
+      <div class="depo-foto-card">
+        <img loading="lazy" src="public/images/depoimento-2.jpg" alt="Depoimento 2"/>
+      </div>
+      <div class="depo-foto-card">
+        <img loading="lazy" src="public/images/depoimento-3.jpg" alt="Depoimento 3"/>
+      </div>
+    </div>
+    <div class="depos-hint">
+      <svg class="arr-left" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      Arraste para o lado
+      <svg class="arr-right" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+    </div>
+  </section>
+
 
   <!-- GARANTIA -->
   <section class="garantia">
     <div class="container">
       <div class="garantia-box">
-        <div class="icone">🛡️</div>
-        <h2>Garantia Incondicional de 7 Dias</h2>
-        <p>Se por qualquer motivo você não gostar do material, basta enviar um e-mail em até <strong>7 dias</strong> e devolvemos <strong>100% do seu dinheiro</strong>.<br/><br/>Sem perguntas. Sem burocracia.<br/>O risco é todo nosso.</p>
+        <div class="garantia-inner">
+          <div class="garantia-icone">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div>
+            <h2>Garantia de 7 Dias</h2>
+            <p>Não gostou? Devolvemos <strong>100% do seu dinheiro</strong>. Sem perguntas, sem burocracia.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -808,7 +1077,7 @@
 
   <!-- RODAPÉ -->
   <footer>
-    <p>© 2026 100 Receitas na Airfryer. Todos os direitos reservados.</p>
+    <p>© 2026 Juh Cozinha. Todos os direitos reservados.</p>
     <p style="margin-top:8px;"><a href="#">Política de Privacidade</a> • <a href="#">Termos de Uso</a></p>
   </footer>
 
@@ -823,6 +1092,23 @@
       min.textContent = String(Math.floor(total / 60)).padStart(2, '0');
       seg.textContent = String(total % 60).padStart(2, '0');
     }, 1000);
+
+    // DORES INTERATIVAS
+    function marcarDor(el) {
+      el.classList.toggle('marcado');
+      const marcados = document.querySelectorAll('.dores li.marcado').length;
+      const fechamento = document.getElementById('dores-fechamento');
+      if (marcados === 0) {
+        fechamento.textContent = 'Clique nos itens que você se identifica';
+        fechamento.classList.remove('ativo');
+      } else if (marcados === 1) {
+        fechamento.textContent = 'Esse livro foi feito pra você.';
+        fechamento.classList.add('ativo');
+      } else {
+        fechamento.textContent = `Você marcou ${marcados} — esse livro foi feito pra você.`;
+        fechamento.classList.add('ativo');
+      }
+    }
 
     // FAQ
     function toggleFaq(el) {
